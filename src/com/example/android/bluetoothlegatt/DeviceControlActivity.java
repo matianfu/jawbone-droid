@@ -129,7 +129,7 @@ public class DeviceControlActivity extends Activity {
                         if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0) {
                             // If there is an active notification on a characteristic, clear
                             // it first so it doesn't update the data field on the user interface.
-                            if (mNotifyCharacteristic != null) {
+                            if (mNotifyCharacteristic != null && groupPosition == 3 && childPosition == 3) {
                                 mBluetoothLeService.setCharacteristicNotification(
                                         mNotifyCharacteristic, false);
                                 mNotifyCharacteristic = null;
@@ -138,8 +138,11 @@ public class DeviceControlActivity extends Activity {
                         }
                         if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
                             mNotifyCharacteristic = characteristic;
-                            mBluetoothLeService.setCharacteristicNotification(
-                                    characteristic, true);
+                            
+                            if (groupPosition == 3 && childPosition == 3)
+                            {
+                            	mBluetoothLeService.setCharacteristicNotification(characteristic, true);
+                            }
                         }
                         return true;
                     }

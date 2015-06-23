@@ -295,11 +295,20 @@ public class BluetoothLeService extends Service {
             return;
         }
         mBluetoothGatt.setCharacteristicNotification(characteristic, enabled);
-        
-        BluetoothGattDescriptor descriptor = characteristic.getDescriptor(
-                UUID.fromString(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
-        descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
-        mBluetoothGatt.writeDescriptor(descriptor);
+
+        if (enabled)
+        {
+	        BluetoothGattDescriptor descriptor = characteristic.getDescriptor(
+	                UUID.fromString(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
+	        descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+	        mBluetoothGatt.writeDescriptor(descriptor);
+        }
+//        else {
+//            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(
+//                    UUID.fromString(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
+//            descriptor.setValue(BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE);
+//            mBluetoothGatt.writeDescriptor(descriptor);
+//        }
 
         // This is specific to Heart Rate Measurement.
 //        if (UUID_HEART_RATE_MEASUREMENT.equals(characteristic.getUuid())) {
