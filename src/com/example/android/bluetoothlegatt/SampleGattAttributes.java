@@ -53,12 +53,13 @@ public class SampleGattAttributes {
         attributes.put("00002a50-0000-1000-8000-00805f9b34fb", "PnP ID");
         
         attributes.put("0000fff0-0000-1000-8000-00805f9b34fb", "Custom Service");
-        attributes.put("0000fff1-0000-1000-8000-00805f9b34fb", "Attribute 1 (01)");
-        attributes.put("0000fff2-0000-1000-8000-00805f9b34fb", "Attribute 2 (02)");
-        attributes.put("0000fff3-0000-1000-8000-00805f9b34fb", "Attribute 3 (No Value)");
-        attributes.put("0000fff4-0000-1000-8000-00805f9b34fb", "Attribute 4 (Notification)");
-        attributes.put("0000fff5-0000-1000-8000-00805f9b34fb", "Attribute 5 (Five Values)");
-        attributes.put("0000fff6-0000-1000-8000-00805f9b34fb", "Attribute 6 (No Value)");
+        attributes.put("0000fff1-0000-1000-8000-00805f9b34fb", "Attribute 1 (Drug ID)");
+        attributes.put("0000fff2-0000-1000-8000-00805f9b34fb", "Attribute 2 (Trig Notification)");
+        attributes.put("0000fff3-0000-1000-8000-00805f9b34fb", "Attribute 3 (Stack)");
+        attributes.put("0000fff4-0000-1000-8000-00805f9b34fb", "Attribute 4 (RESET)");
+        attributes.put("0000fff5-0000-1000-8000-00805f9b34fb", "Attribute 5 (CLEAR)");
+        attributes.put("0000fff6-0000-1000-8000-00805f9b34fb", "Attribute 6 (Read Time)");
+        attributes.put("0000fff7-0000-1000-8000-00805f9b34fb", "Attribute 7 (Write Time)");
     }
 
     public static String lookup(String uuid, String defaultName) {

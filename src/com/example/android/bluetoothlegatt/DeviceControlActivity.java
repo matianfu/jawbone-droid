@@ -17,6 +17,8 @@
 package com.example.android.bluetoothlegatt;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.content.BroadcastReceiver;
@@ -57,6 +59,7 @@ public class DeviceControlActivity extends Activity {
     private String mDeviceAddress;
     private ExpandableListView mGattServicesList;
     private BluetoothLeService mBluetoothLeService;
+    
     private ArrayList<ArrayList<BluetoothGattCharacteristic>> mGattCharacteristics =
             new ArrayList<ArrayList<BluetoothGattCharacteristic>>();
     private boolean mConnected = false;
@@ -64,6 +67,7 @@ public class DeviceControlActivity extends Activity {
 
     private final String LIST_NAME = "NAME";
     private final String LIST_UUID = "UUID";
+    
 
     // Code to manage Service lifecycle.
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
@@ -129,17 +133,33 @@ public class DeviceControlActivity extends Activity {
                         if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0) {
                             // If there is an active notification on a characteristic, clear
                             // it first so it doesn't update the data field on the user interface.
-                            if (mNotifyCharacteristic != null && groupPosition == 3 && childPosition == 3) {
+                            if (mNotifyCharacteristic != null && groupPosition == 3 && childPosition == 1) {
                                 mBluetoothLeService.setCharacteristicNotification(
                                         mNotifyCharacteristic, false);
                                 mNotifyCharacteristic = null;
                             }
                             mBluetoothLeService.readCharacteristic(characteristic);
                         }
-                        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
+                        
+                        if (groupPosition == 3 && childPosition == 4) {
+                        	
+                        	byte[] val = {(byte)'C', (byte)'L', (byte)'E', (byte)'A', (byte)'R'};
+                        	characteristic.setValue(val);
+                        	mBluetoothLeService.writeCharacteristic(characteristic);
+                        	return true;
+                        }
+                        else if (groupPosition == 3 && childPosition == 6) {
+                        	
+                        	byte[] val = {(byte)0xee, (byte)0xee, (byte)0xee, (byte)0xee};
+                        	characteristic.setValue(val);
+                        	mBluetoothLeService.writeCharacteristic(characteristic);
+                        	return true;
+                        }
+      
+                        if ((charaProp & BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
                             mNotifyCharacteristic = characteristic;
                             
-                            if (groupPosition == 3 && childPosition == 3)
+                            if ((groupPosition == 3) && (childPosition == 1))
                             {
                             	mBluetoothLeService.setCharacteristicNotification(characteristic, true);
                             }
