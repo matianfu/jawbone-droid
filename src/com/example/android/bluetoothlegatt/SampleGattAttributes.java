@@ -55,7 +55,7 @@ public class SampleGattAttributes {
         attributes.put("0000fff0-0000-1000-8000-00805f9b34fb", "Custom Service");
         attributes.put("0000fff1-0000-1000-8000-00805f9b34fb", "Attribute 1 (Drug ID)");
         attributes.put("0000fff2-0000-1000-8000-00805f9b34fb", "Attribute 2 (Trig Notification)");
-        attributes.put("0000fff3-0000-1000-8000-00805f9b34fb", "Attribute 3 (Stack)");
+        attributes.put("0000fff3-0000-1000-8000-00805f9b34fb", "Attribute 3 (History)");
         attributes.put("0000fff4-0000-1000-8000-00805f9b34fb", "Attribute 4 (RESET)");
         attributes.put("0000fff5-0000-1000-8000-00805f9b34fb", "Attribute 5 (CLEAR)");
         attributes.put("0000fff6-0000-1000-8000-00805f9b34fb", "Attribute 6 (Read Time)");
